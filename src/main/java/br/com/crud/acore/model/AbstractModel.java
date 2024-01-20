@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @MappedSuperclass
-public abstract class AbstractEntity implements Serializable {
+public abstract class AbstractModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;

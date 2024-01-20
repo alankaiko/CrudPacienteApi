@@ -1,6 +1,6 @@
 package br.com.crud.acore.utils;
 
-import br.com.crud.acore.model.AbstractEntity;
+import br.com.crud.acore.model.AbstractModel;
 import org.apache.commons.beanutils.PropertyUtils;
 
 public class ObjectUtil {
@@ -11,7 +11,7 @@ public class ObjectUtil {
         return object == null;
     }
 
-    public static <T extends AbstractEntity> Boolean isNewEntity(T object) {
+    public static <T extends AbstractModel> Boolean isNewEntity(T object) {
         return isNull(object) || !NumberUtil.isPositive(object.getCodigo());
     }
 

@@ -1,14 +1,14 @@
 package br.com.crud.acore.resources;
 
-import br.com.crud.acore.model.AbstractDTO;
-import br.com.crud.acore.model.AbstractEntity;
+import br.com.crud.acore.model.AbstractFilter;
+import br.com.crud.acore.model.AbstractModel;
 import br.com.crud.acore.service.AbstractService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
-public abstract class AbstractController<T extends AbstractEntity, D extends AbstractDTO> {
+public abstract class AbstractController<T extends AbstractModel, D extends AbstractFilter> {
     private final AbstractService<T, D> service;
 
     public AbstractController(AbstractService<T, D> service) {

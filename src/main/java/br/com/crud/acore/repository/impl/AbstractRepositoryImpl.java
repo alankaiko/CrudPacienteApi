@@ -1,7 +1,7 @@
 package br.com.crud.acore.repository.impl;
 
-import br.com.crud.acore.model.AbstractDTO;
-import br.com.crud.acore.model.AbstractEntity;
+import br.com.crud.acore.model.AbstractFilter;
+import br.com.crud.acore.model.AbstractModel;
 import br.com.crud.acore.repository.AbstractRepository;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 
 @Transactional(readOnly = true)
-public class AbstractRepositoryImpl<T extends AbstractEntity, D extends AbstractDTO, ID> extends SimpleJpaRepository<T, ID> implements AbstractRepository<T, D, ID> {
+public class AbstractRepositoryImpl<T extends AbstractModel, D extends AbstractFilter, ID> extends SimpleJpaRepository<T, ID> implements AbstractRepository<T, D, ID> {
     private final EntityManager entityManager;
     protected Class<T> domainClass;
     protected Class<?> returnType;

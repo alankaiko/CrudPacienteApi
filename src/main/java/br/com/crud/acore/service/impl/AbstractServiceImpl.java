@@ -1,7 +1,7 @@
 package br.com.crud.acore.service.impl;
 
-import br.com.crud.acore.model.AbstractDTO;
-import br.com.crud.acore.model.AbstractEntity;
+import br.com.crud.acore.model.AbstractFilter;
+import br.com.crud.acore.model.AbstractModel;
 import br.com.crud.acore.repository.AbstractRepository;
 import br.com.crud.acore.service.AbstractService;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public abstract class AbstractServiceImpl<T extends AbstractEntity, D extends AbstractDTO> implements AbstractService<T, D> {
+public abstract class AbstractServiceImpl<T extends AbstractModel, D extends AbstractFilter> implements AbstractService<T, D> {
     protected AbstractRepository<T, D, Long> dao;
 
     public AbstractServiceImpl(AbstractRepository<T, D, Long> dao) {

@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-public class AbstractDTO implements Serializable {
+public class AbstractFilter implements Serializable {
     private int pagina;
     private int itensPorPagina;
 }
