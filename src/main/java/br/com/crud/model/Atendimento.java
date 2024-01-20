@@ -5,9 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
 
@@ -16,7 +14,6 @@ import java.sql.Time;
 @Setter
 @EqualsAndHashCode(callSuper = false)
 public class Atendimento extends AbstractModel {
-    private String nome;
     private String procedimento;
     private String leito;
     private Date data;
@@ -32,6 +29,10 @@ public class Atendimento extends AbstractModel {
     private String k;
     private String file;
     private String material;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "tbl_paciente_codigo", referencedColumnName = "codigo")
+    private Paciente paciente;
 
     @OneToOne
     @JoinColumn(name = "tbl_hospital_codigo", referencedColumnName = "codigo")

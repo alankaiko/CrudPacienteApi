@@ -11,8 +11,6 @@ import javax.persistence.Entity;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
-public class Usuario extends AbstractModel {
-    private String login;
-    private String cpf;
-    private String senha;
+public class Paciente extends AbstractModel {
+    private String nome;
 }

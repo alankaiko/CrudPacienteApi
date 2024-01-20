@@ -6,7 +6,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class UsuarioFiltro extends AbstractFilter {
-    private String login;
-    private String cpf;
+public class PacienteFiltro extends AbstractFilter {
+    private String nome;
 }
