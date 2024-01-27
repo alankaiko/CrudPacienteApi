@@ -39,7 +39,7 @@ public class AtendimentoExcluidoRepositoryImpl extends AbstractRepositoryImpl<At
         CriteriaQuery<AtendimentoExcluido> query = builder.createQuery(AtendimentoExcluido.class);
         Root<AtendimentoExcluido> root = query.from(AtendimentoExcluido.class);
 
-        query.orderBy(builder.asc(root.get("codigo")));
+        query.orderBy(builder.asc(root.get("id")));
         Predicate[] predicato = this.adicionarFiltros(builder, atendimentoExcluidoFiltro, root);
         query.where(predicato);
 

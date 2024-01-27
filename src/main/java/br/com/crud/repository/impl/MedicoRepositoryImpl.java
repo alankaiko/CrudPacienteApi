@@ -37,7 +37,7 @@ public class MedicoRepositoryImpl extends AbstractRepositoryImpl<Medico, MedicoF
         CriteriaQuery<Medico> query = builder.createQuery(Medico.class);
         Root<Medico> root = query.from(Medico.class);
 
-        query.orderBy(builder.asc(root.get("codigo")));
+        query.orderBy(builder.asc(root.get("id")));
         Predicate[] predicato = this.adicionarFiltros(builder, medicoFiltro, root);
         query.where(predicato);
 

@@ -36,7 +36,7 @@ public class AssinadorRepositoryImpl extends AbstractRepositoryImpl<Assinador, A
         CriteriaQuery<Assinador> query = builder.createQuery(Assinador.class);
         Root<Assinador> root = query.from(Assinador.class);
 
-        query.orderBy(builder.asc(root.get("codigo")));
+        query.orderBy(builder.asc(root.get("id")));
         Predicate[] predicato = this.adicionarFiltros(builder, assinadorFiltro, root);
         query.where(predicato);
 

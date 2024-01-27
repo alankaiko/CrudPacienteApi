@@ -31,22 +31,22 @@ public class Atendimento extends AbstractModel {
     private String material;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "tbl_paciente_codigo", referencedColumnName = "codigo")
+    @JoinColumn(name = "tbl_paciente_id", referencedColumnName = "id")
     private Paciente paciente;
 
     @OneToOne
-    @JoinColumn(name = "tbl_hospital_codigo", referencedColumnName = "codigo")
+    @JoinColumn(name = "tbl_hospital_id", referencedColumnName = "id")
     private Hospital hospital;
 
     @OneToOne
-    @JoinColumn(name = "tbl_medico_codigo", referencedColumnName = "codigo")
+    @JoinColumn(name = "tbl_medico_id", referencedColumnName = "id")
     private Medico medico;
 
     @OneToOne
-    @JoinColumn(name = "tbl_convenio_codigo", referencedColumnName = "codigo")
+    @JoinColumn(name = "tbl_convenio_id", referencedColumnName = "id")
     private Convenio convenio;
 
     @OneToOne
-    @JoinColumn(name = "tbl_assinador_codigo", referencedColumnName = "codigo")
+    @JoinColumn(name = "tbl_assinador_id", referencedColumnName = "id")
     private Assinador assinador;
 }

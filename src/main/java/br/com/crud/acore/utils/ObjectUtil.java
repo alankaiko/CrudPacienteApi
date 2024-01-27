@@ -12,7 +12,7 @@ public class ObjectUtil {
     }
 
     public static <T extends AbstractModel> Boolean isNewEntity(T object) {
-        return isNull(object) || !NumberUtil.isPositive(object.getCodigo());
+        return isNull(object) || !NumberUtil.isPositive(object.getId());
     }
 
     public static Object getEnumLabel(Object label) {

@@ -37,7 +37,7 @@ public class HospitalRepositoryImpl extends AbstractRepositoryImpl<Hospital, Hos
         CriteriaQuery<Hospital> query = builder.createQuery(Hospital.class);
         Root<Hospital> root = query.from(Hospital.class);
 
-        query.orderBy(builder.asc(root.get("codigo")));
+        query.orderBy(builder.asc(root.get("id")));
         Predicate[] predicato = this.adicionarFiltros(builder, hospitalFiltro, root);
         query.where(predicato);
 

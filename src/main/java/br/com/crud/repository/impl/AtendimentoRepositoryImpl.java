@@ -39,7 +39,7 @@ public class AtendimentoRepositoryImpl extends AbstractRepositoryImpl<Atendiment
         CriteriaQuery<Atendimento> query = builder.createQuery(Atendimento.class);
         Root<Atendimento> root = query.from(Atendimento.class);
 
-        query.orderBy(builder.asc(root.get("codigo")));
+        query.orderBy(builder.asc(root.get("id")));
         Predicate[] predicato = this.adicionarFiltros(builder, atendimentoFiltro, root);
         query.where(predicato);
 

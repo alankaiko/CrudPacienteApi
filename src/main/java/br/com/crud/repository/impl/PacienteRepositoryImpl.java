@@ -37,7 +37,7 @@ public class PacienteRepositoryImpl extends AbstractRepositoryImpl<Paciente, Pac
         CriteriaQuery<Paciente> query = builder.createQuery(Paciente.class);
         Root<Paciente> root = query.from(Paciente.class);
 
-        query.orderBy(builder.asc(root.get("codigo")));
+        query.orderBy(builder.asc(root.get("id")));
         Predicate[] predicato = this.adicionarFiltros(builder, pacienteFiltro, root);
         query.where(predicato);
 

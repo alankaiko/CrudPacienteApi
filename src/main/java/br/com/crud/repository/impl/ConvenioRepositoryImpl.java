@@ -37,7 +37,7 @@ public class ConvenioRepositoryImpl extends AbstractRepositoryImpl<Convenio, Con
         CriteriaQuery<Convenio> query = builder.createQuery(Convenio.class);
         Root<Convenio> root = query.from(Convenio.class);
 
-        query.orderBy(builder.asc(root.get("codigo")));
+        query.orderBy(builder.asc(root.get("id")));
         Predicate[] predicato = this.adicionarFiltros(builder, convenioFiltro, root);
         query.where(predicato);
 
