@@ -79,15 +79,6 @@ public class AtendimentoRepositoryImpl extends AbstractRepositoryImpl<Atendiment
         return lista.toArray(new Predicate[lista.size()]);
     }
 
-    private void adicionarPaginacao(TypedQuery<?> tiped, Pageable page) {
-        int paginaatual = page.getPageNumber();
-        int totalporpagina = page.getPageSize();
-        int primeiroRegistroDaPagina = paginaatual * totalporpagina;
-
-        tiped.setFirstResult(primeiroRegistroDaPagina);
-        tiped.setMaxResults(totalporpagina);
-    }
-
     private Long total(AtendimentoFiltro atendimentoFiltro) {
         CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
         CriteriaQuery<Long> query = builder.createQuery(Long.class);

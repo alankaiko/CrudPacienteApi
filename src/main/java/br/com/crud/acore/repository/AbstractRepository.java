@@ -8,4 +8,5 @@ import org.springframework.data.repository.NoRepositoryBean;
 
 @NoRepositoryBean
 public interface AbstractRepository<T extends AbstractModel, D extends AbstractFilter, ID> extends JpaRepository<T, ID>, JpaSpecificationExecutor<T> {
+
 }

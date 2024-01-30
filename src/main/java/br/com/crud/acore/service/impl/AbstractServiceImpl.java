@@ -4,6 +4,8 @@ import br.com.crud.acore.model.AbstractFilter;
 import br.com.crud.acore.model.AbstractModel;
 import br.com.crud.acore.repository.AbstractRepository;
 import br.com.crud.acore.service.AbstractService;
+import org.springframework.beans.BeanUtils;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,17 +26,36 @@ public abstract class AbstractServiceImpl<T extends AbstractModel, D extends Abs
     }
 
     @Override
-    public void deletar(Long codigo) {
-        this.dao.deleteById(codigo);
+    public void deletar(Long id) {
+        this.dao.deleteById(id);
     }
 
     @Override
-    public T buscarId(Long codigo) {
-        return this.dao.findById(codigo).orElse((T) null);
+    public T buscarId(Long id) {
+        return this.dao.findById(id).orElse((T) null);
     }
 
     @Override
     public List<T> listar() {
         return this.dao.findAll();
+    }
+
+    @Override
+    public T atualizar(Long id, T entity) {
+        try {
+            T salvo = this.buscarId(id);
+            BeanUtils.copyProperties(entity, salvo, "id");
+
+            return this.salvar(salvo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public ResponseEntity<?> imprimir(Long id) {
+        return null;
     }
 }

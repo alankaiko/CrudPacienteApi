@@ -1,8 +1,9 @@
-package br.com.crud.acore.resources;
+package br.com.crud.acore.controller;
 
 import br.com.crud.acore.model.AbstractFilter;
 import br.com.crud.acore.model.AbstractModel;
 import br.com.crud.acore.service.AbstractService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -20,18 +21,29 @@ public abstract class AbstractController<T extends AbstractModel, D extends Abst
         return this.service.salvar(entidade);
     }
 
-    @DeleteMapping
-    public void deletar(@PathVariable Long codigo) {
-        this.service.deletar(codigo);
+    @DeleteMapping({"{id}"})
+    public void deletar(@PathVariable Long id) {
+        this.service.deletar(id);
     }
 
-    @GetMapping({"{codigo}"})
-    public T buscarId(@PathVariable Long codigo) {
-        return this.service.buscarId(codigo);
+    @GetMapping({"{id}"})
+    public T buscarId(@PathVariable Long id) {
+        return this.service.buscarId(id);
     }
 
     @GetMapping
     public List<T> listar() {
         return this.service.listar();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<T> atualizar(@PathVariable Long id, @Valid @RequestBody T entity) {
+        T salvo = this.service.atualizar(id, entity);
+        return ResponseEntity.ok(salvo);
+    }
+
+    @GetMapping("imprimir/{id}")
+    public ResponseEntity<?> imprimir(@PathVariable Long id) {
+        return this.service.imprimir(id);
     }
 }

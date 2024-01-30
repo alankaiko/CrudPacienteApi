@@ -1,10 +1,10 @@
 package br.com.crud.repository.impl;
 
 import br.com.crud.acore.repository.impl.AbstractRepositoryImpl;
-import br.com.crud.model.Paciente;
-import br.com.crud.model.Paciente_;
-import br.com.crud.model.filter.PacienteFiltro;
-import br.com.crud.repository.PacienteRepository;
+import br.com.crud.model.Curso;
+import br.com.crud.model.Curso_;
+import br.com.crud.model.filter.CursoFiltro;
+import br.com.crud.repository.CursoRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -23,45 +23,45 @@ import java.util.List;
 
 @Repository
 @Transactional(readOnly = true)
-public class PacienteRepositoryImpl extends AbstractRepositoryImpl<Paciente, PacienteFiltro, Long> implements PacienteRepository {
+public class CursoRepositoryImpl extends AbstractRepositoryImpl<Curso, CursoFiltro, Long> implements CursoRepository {
     private final EntityManager entityManager;
 
-    public PacienteRepositoryImpl(EntityManager entityManager) {
-        super(Paciente.class, entityManager);
+    public CursoRepositoryImpl(EntityManager entityManager) {
+        super(Curso.class, entityManager);
         this.entityManager = entityManager;
     }
 
     @Override
-    public Page<Paciente> paginado(PacienteFiltro pacienteFiltro, Pageable pageable) {
+    public Page<Curso> paginado(CursoFiltro cursoFiltro, Pageable pageable) {
         CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
-        CriteriaQuery<Paciente> query = builder.createQuery(Paciente.class);
-        Root<Paciente> root = query.from(Paciente.class);
+        CriteriaQuery<Curso> query = builder.createQuery(Curso.class);
+        Root<Curso> root = query.from(Curso.class);
 
         query.orderBy(builder.asc(root.get("id")));
-        Predicate[] predicato = this.adicionarFiltros(builder, pacienteFiltro, root);
+        Predicate[] predicato = this.adicionarFiltros(builder, cursoFiltro, root);
         query.where(predicato);
 
-        TypedQuery<Paciente> tiped = this.entityManager.createQuery(query);
+        TypedQuery<Curso> tiped = this.entityManager.createQuery(query);
         this.adicionarPaginacao(tiped, pageable);
 
-        return new PageImpl<>(tiped.getResultList(), pageable, this.total(pacienteFiltro));
+        return new PageImpl<>(tiped.getResultList(), pageable, this.total(cursoFiltro));
     }
 
-    private Predicate[] adicionarFiltros(CriteriaBuilder builder, PacienteFiltro pacienteFiltro, Root<Paciente> root) {
+    private Predicate[] adicionarFiltros(CriteriaBuilder builder, CursoFiltro cursoFiltro, Root<Curso> root) {
         List<Predicate> lista = new ArrayList<>();
 
-        if (!StringUtils.isEmpty(pacienteFiltro.getNome()))
-            lista.add(builder.like(builder.lower(root.get(Paciente_.NOME)), "%" + pacienteFiltro.getNome().toLowerCase() + "%"));
+        if (!StringUtils.isEmpty(cursoFiltro.getTitulo()))
+            lista.add(builder.like(builder.lower(root.get(Curso_.titulo)), "%" + cursoFiltro.getTitulo().toLowerCase() + "%"));
 
         return lista.toArray(new Predicate[lista.size()]);
     }
 
-    private Long total(PacienteFiltro pacienteFiltro) {
+    private Long total(CursoFiltro cursoFiltro) {
         CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
         CriteriaQuery<Long> query = builder.createQuery(Long.class);
-        Root<Paciente> root = query.from(Paciente.class);
+        Root<Curso> root = query.from(Curso.class);
 
-        Predicate[] predicato = adicionarFiltros(builder, pacienteFiltro, root);
+        Predicate[] predicato = adicionarFiltros(builder, cursoFiltro, root);
         query.where(predicato);
         query.select(builder.count(root));
         return this.entityManager.createQuery(query).getSingleResult();

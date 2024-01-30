@@ -1,6 +1,6 @@
 package br.com.crud.controller;
 
-import br.com.crud.acore.resources.AbstractController;
+import br.com.crud.acore.controller.AbstractController;
 import br.com.crud.model.Atendimento;
 import br.com.crud.model.filter.AtendimentoFiltro;
 import br.com.crud.service.AtendimentoService;

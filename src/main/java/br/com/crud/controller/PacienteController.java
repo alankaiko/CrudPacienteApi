@@ -1,6 +1,6 @@
 package br.com.crud.controller;
 
-import br.com.crud.acore.resources.AbstractController;
+import br.com.crud.acore.controller.AbstractController;
 import br.com.crud.model.Paciente;
 import br.com.crud.model.filter.PacienteFiltro;
 import br.com.crud.service.PacienteService;
